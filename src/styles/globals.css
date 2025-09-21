@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@layer components {
+  .btn {
+    @apply uppercase 
+           bg-gray-800 text-white 
+           px-3 py-2 
+           hover:opacity-90 
+           focus:bg-gray-200 focus:text-gray-800 
+           transition 
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+}
+
+.ais-SearchBox-form {
+  @apply flex gap-2 text-sm relative;
+}
+
+.ais-SearchBox-input {
+  @apply w-full p-2 pr-10 border;
+}
+
+.ais-SearchBox-submit {
+  @apply absolute right-0 p-3 h-full;
+}
+
+.ais-SearchBox-reset {
+  @apply hidden;
+}
+
+.ais-SearchBox-input::-webkit-search-cancel-button {
+  @apply appearance-none;
+}

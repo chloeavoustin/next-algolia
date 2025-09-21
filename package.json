@@ -1,0 +1,31 @@
+{
+  "name": "next-algolia",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/third-parties": "^15.4.6",
+    "algoliasearch": "^5.35.0",
+    "autoprefixer": "^10.4.20",
+    "next": "^15.4.6",
+    "postcss": "^8.0.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-instantsearch": "^7.16.3",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@types/node": "24.5.2",
+    "@types/react": "19.1.13",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^15.4.6",
+    "prettier": "^2.8.0",
+    "typescript": "^5.2.2"
+  },
+  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af"
+}

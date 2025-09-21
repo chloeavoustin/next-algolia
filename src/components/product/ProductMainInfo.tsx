@@ -1,0 +1,80 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import ProductImages from '@/components/product/ProductImages';
+import SizesSelector from '@/components/product/SizesSelector';
+import QuantitySelector from '@/components/product/QuantitySelector';
+import { Product } from '@/type/product';
+
+interface ProductMainInfoProps {
+  product: Product;
+}
+
+export default function ProductMainInfo({ product }: ProductMainInfoProps) {
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+
+  return (
+    <div className="p-6 grid grid-cols-4 gap-6">
+      <ProductImages images={product.images} name={product.name} />
+      <div className="flex flex-col gap-7 col-span-4 lg:col-span-1">
+        <span className="text-xs uppercase block">
+          <Link
+            href={`/products`}
+            className="border-b border-gray-800 cursor-pointer"
+          >
+            Shoes
+          </Link>{' '}
+          / {product.category}
+        </span>
+        <div>
+          <h1 className="text-xl uppercase">{product.name}</h1>
+          <p className="text-l text-gray-400 mt-2">{product.price} €</p>
+        </div>
+
+        <SizesSelector
+          sizes={product.sizes}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+        />
+
+        <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+
+        <button
+          className="w-full text-sm btn"
+          disabled={!selectedSize}
+          type="button"
+          aria-label="Add to cart"
+          onClick={() => {
+            console.log('Add to cart', {
+              id: product.objectID ?? '',
+              size: selectedSize,
+              quantity,
+            });
+          }}
+        >
+          Add to cart
+        </button>
+
+        {product.description && (
+          <div>
+            <h2 className="text-xs font-medium mb-2 block">Description</h2>
+            <p className="text-sm">{product.description}</p>
+          </div>
+        )}
+
+        <ul className="text-gray-400 text-xs gap-1 flex flex-col">
+          {['gender', 'availability', 'sku'].map((key) =>
+            product[key as keyof typeof product] ? (
+              <li key={key}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}:{' '}
+                {product[key as keyof typeof product]}
+              </li>
+            ) : null,
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+}
