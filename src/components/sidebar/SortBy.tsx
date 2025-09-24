@@ -6,7 +6,7 @@ import { indexName } from '@/lib/utils/algoliaClient';
 export default function SortBy() {
   return (
     <div>
-      <h3 className="text-xs font-medium mb-2 block">Sort by</h3>
+      <h3 className='text-xs font-medium mb-2 block'>Sort by</h3>
       <CustomSortBy
         items={[
           { value: indexName, label: 'Relevance' },

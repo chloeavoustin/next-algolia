@@ -21,12 +21,10 @@ npm install
 ### 2. Set Up Algolia
 
 1. **Create Algolia Account**
-
    - Go to [Algolia.com](https://www.algolia.com/)
    - Sign up for a free account
 
 2. **Get API Keys**
-
    - In your Algolia dashboard, go to **Settings > API Keys**
    - Copy your **Application ID** (starts with a letter, e.g., "AB1C2D3E4F")
    - Copy your **Search-Only API Key** (read-only key for frontend searches)

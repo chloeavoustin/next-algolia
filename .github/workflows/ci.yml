@@ -9,8 +9,8 @@ on:
       - '**'
 
 jobs:
-  lint:
-    name: Lint • TypeCheck • Format
+  lint-and-format:
+    name: Code Quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,14 +19,20 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: npm install
-      - run: npx next lint
-      - run: npx tsc --noEmit
-      - run: npx prettier --check "src/**/*.{js,jsx,ts,tsx,json,css,md}"
+      
+      - name: 🔍 ESLint Check
+        run: npm run lint
+        
+      - name: 📏 TypeScript Check
+        run: npm run type-check
+        
+      - name: 🎨 Prettier Format Check
+        run: npm run format:check
 
   test:
     name: Unit Tests
     runs-on: ubuntu-latest
-    needs: lint
+    needs: lint-and-format
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -44,7 +50,6 @@ jobs:
       NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
       NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY }}
       NEXT_PUBLIC_ALGOLIA_INDEX_NAME: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
-      NEXT_PUBLIC_GTM_ID: ${{ secrets.NEXT_PUBLIC_GTM_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

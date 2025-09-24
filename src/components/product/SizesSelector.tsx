@@ -19,9 +19,9 @@ export default function SizesSelector({
 
   return (
     <div>
-      <span className="text-xs font-medium mb-2 block">Size:</span>
+      <span className='text-xs font-medium mb-2 block'>Size:</span>
       {sizes.length > 0 ? (
-        <div className="flex gap-2 flex-wrap">
+        <div className='flex gap-2 flex-wrap'>
           {sizes.map((size: string) => (
             <button
               key={size}
@@ -38,7 +38,7 @@ export default function SizesSelector({
           ))}
         </div>
       ) : (
-        <p className="text-gray-400">No sizes available</p>
+        <p className='text-gray-400'>No sizes available</p>
       )}
     </div>
   );

@@ -24,7 +24,7 @@ A modern e-commerce application featuring Product Listing Pages (PLP) and Produc
 - **Testing**: Vitest, React Testing Library
 - **CI/CD**: GitHub Actions
 - **Deployment**: Vercel
-- **Code Quality**: ESLint, Prettier
+- **Code Quality**: ESLint
 
 ## Quick Start
 
@@ -87,18 +87,22 @@ npm run type-check    # Run TypeScript type checking
 npm test              # Run tests
 ```
 
-## Deployment
+## Deploy & Hosting
 
-### Vercel
+The application is hosted on [Vercel](https://vercel.com), which provides a simple and fast deployment process.
 
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Add environment variables in Vercel dashboard:
+### Deployment process
+
+1. **Connect the repository to Vercel**  
+   The GitHub repository is linked to Vercel to enable continuous deployment (CI/CD).
+2. **Add environment variables**  
+   In the Vercel dashboard, configure the following environment variables:
    - `NEXT_PUBLIC_ALGOLIA_APP_ID`
    - `NEXT_PUBLIC_ALGOLIA_SEARCH_KEY`
    - `NEXT_PUBLIC_ALGOLIA_INDEX_NAME`
-   - `NEXT_PUBLIC_GTM_ID`
-4. Deploy automatically on every push
+
+3. **Automatic deployments**  
+   On every push, Vercel rebuilds and deploys the application automatically.
 
 ## Testing
 
@@ -136,7 +140,7 @@ npm run test:coverage
 - [ ] **Loading States** - Add skeleton loaders and better loading indicators
 - [ ] **Search Analytics** - Track search queries and user behavior patterns
 - [ ] **SEO Optimization** - Add structured data (JSON-LD) and meta improvements
-- [ ] **Accessibility Audit** - Complete WCAG 2.1 AA compliance
+- [ ] **Accessibility Audit** - Complete WCAG compliance
 
 ### Low Priority (Nice to Have)
 
@@ -155,7 +159,7 @@ npm run test:coverage
 ### Performance & Scalability
 
 - [ ] **Image Optimization** - use CDN to optimize image on all devices
-- [ ] **Bundle Analysis** - Code splitting and tree shaking optimization
+- [ ] **Bundle Analysis** - Code splitting and optimization
 - [ ] **Server-Side Optimization** - Edge functions, ISR improvements
 - [ ] **Performance Metrics** - Core Web Vitals monitoring and optimization
 

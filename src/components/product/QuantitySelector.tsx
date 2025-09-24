@@ -22,24 +22,24 @@ export default function QuantitySelector({
   };
 
   return (
-    <div className="text-sm">
-      <span className="text-xs font-medium mb-2 block">Quantity:</span>
-      <div className="flex items-center border rounded">
+    <div className='text-sm'>
+      <span className='text-xs font-medium mb-2 block'>Quantity:</span>
+      <div className='flex items-center border rounded'>
         <button
-          type="button"
+          type='button'
           onClick={handleDecrease}
-          className="px-3 py-1 text-lg border-r transition hover:bg-gray-100"
-          aria-label="Decrease quantity"
+          className='px-3 py-1 text-lg border-r transition hover:bg-gray-100'
+          aria-label='Decrease quantity'
           disabled={quantity <= 1}
         >
           −
         </button>
-        <span className="px-4 w-full text-center">{quantity}</span>
+        <span className='px-4 w-full text-center'>{quantity}</span>
         <button
-          type="button"
+          type='button'
           onClick={handleIncrease}
-          aria-label="Increase quantity"
-          className="px-3 py-1 text-lg border-l transition hover:bg-gray-100"
+          aria-label='Increase quantity'
+          className='px-3 py-1 text-lg border-l transition hover:bg-gray-100'
         >
           +
         </button>

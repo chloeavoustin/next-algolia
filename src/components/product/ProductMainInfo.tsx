@@ -25,21 +25,21 @@ export default function ProductMainInfo({ product }: ProductMainInfoProps) {
   } = useProductSelection(product);
 
   return (
-    <div className="p-6 grid grid-cols-4 gap-6">
+    <div className='p-6 grid grid-cols-4 gap-6'>
       <ProductImages images={product.images} name={product.name} />
-      <div className="flex flex-col gap-7 col-span-4 lg:col-span-1">
-        <span className="text-xs uppercase block">
+      <div className='flex flex-col gap-7 col-span-4 lg:col-span-1'>
+        <span className='text-xs uppercase block'>
           <Link
-            href={`/products`}
-            className="border-b border-gray-800 cursor-pointer"
+            href={'/products'}
+            className='border-b border-gray-800 cursor-pointer'
           >
             Shoes
           </Link>{' '}
           / {product.category}
         </span>
         <div>
-          <h1 className="text-xl uppercase">{product.name}</h1>
-          <p className="text-l text-gray-400 mt-2">{product.price} €</p>
+          <h1 className='text-xl uppercase'>{product.name}</h1>
+          <p className='text-l text-gray-400 mt-2'>{product.price} €</p>
         </div>
 
         <SizesSelector
@@ -55,10 +55,10 @@ export default function ProductMainInfo({ product }: ProductMainInfoProps) {
         />
 
         <button
-          className="w-full text-sm btn"
+          className='w-full text-sm btn'
           disabled={!canAddToCart}
-          type="button"
-          aria-label="Add to cart"
+          type='button'
+          aria-label='Add to cart'
           onClick={() => {
             console.log('Add to cart', getCartItem());
           }}
@@ -68,12 +68,12 @@ export default function ProductMainInfo({ product }: ProductMainInfoProps) {
 
         {product.description && (
           <div>
-            <h2 className="text-xs font-medium mb-2 block">Description</h2>
-            <p className="text-sm">{product.description}</p>
+            <h2 className='text-xs font-medium mb-2 block'>Description</h2>
+            <p className='text-sm'>{product.description}</p>
           </div>
         )}
 
-        <ul className="text-gray-400 text-xs gap-1 flex flex-col">
+        <ul className='text-gray-400 text-xs gap-1 flex flex-col'>
           {PRODUCT_FIELDS.map((key) =>
             product[key] ? (
               <li key={key}>
