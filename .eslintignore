@@ -1,0 +1,7 @@
+*.json
+package-lock.json
+yarn.lock
+.next/
+node_modules/
+dist/
+build/
