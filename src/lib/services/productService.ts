@@ -4,7 +4,12 @@ import { Product, isValidProduct } from '@/type/product';
 import { CACHE_CONFIG } from '@/constants/config';
 
 /**
- * Fetch produit depuis Algolia
+ * Fetches a single product from Algolia search index
+ * Handles 404 errors gracefully by returning null for non-existent products
+ *
+ * @param id - The product object ID to fetch
+ * @returns Promise resolving to the product data or null if not found
+ * @throws Error for non-404 API errors
  */
 async function fetchProductFromAlgolia(id: string): Promise<unknown | null> {
   try {
@@ -23,7 +28,12 @@ async function fetchProductFromAlgolia(id: string): Promise<unknown | null> {
 }
 
 /**
- * Cache produit avec revalidation 1h
+ * Cached product retrieval with automatic validation
+ * Uses Next.js unstable_cache for performance optimization with revalidation
+ * Validates the returned data using the isValidProduct type guard
+ *
+ * @param id - The product object ID to retrieve
+ * @returns Promise resolving to a validated Product object or null if not found/invalid
  */
 export const getProduct = (id: string) =>
   unstable_cache(

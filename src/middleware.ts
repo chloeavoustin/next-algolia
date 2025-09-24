@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  // Activer la basic auth uniquement si on est sur Vercel
   if (process.env.VERCEL !== '1') {
     return NextResponse.next();
   }

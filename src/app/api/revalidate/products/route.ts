@@ -3,7 +3,6 @@ import { CACHE_CONFIG } from '@/constants/config';
 
 export async function POST() {
   try {
-    // Invalide tout le cache des produits
     revalidateTag(CACHE_CONFIG.PRODUCT_CACHE_KEY);
 
     return new Response(

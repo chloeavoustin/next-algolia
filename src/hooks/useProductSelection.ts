@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { Product } from '@/type/product';
 import { PRODUCT_DEFAULTS } from '@/constants/business';
 
+/**
+ * Return type for the useProductSelection hook
+ * Provides all necessary state and actions for product selection functionality
+ */
 interface UseProductSelectionReturn {
   quantity: number;
   selectedSize: string | null;
@@ -19,8 +23,11 @@ interface UseProductSelectionReturn {
 }
 
 /**
- * Hook pour gérer la sélection produit (quantité + taille)
- * Centralise la logique répétée dans ProductMainInfo et autres composants produit
+ * Custom hook for managing product selection state
+ * Handles quantity management, size selection, and cart item generation
+ *
+ * @param product - The product object to manage selection for
+ * @returns Object containing selection state and manipulation functions
  */
 export function useProductSelection(
   product: Product,

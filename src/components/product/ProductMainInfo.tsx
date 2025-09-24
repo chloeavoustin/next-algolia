@@ -7,6 +7,7 @@ import SizesSelector from '@/components/product/SizesSelector';
 import QuantitySelector from '@/components/product/QuantitySelector';
 import { Product } from '@/type/product';
 import { useProductSelection } from '@/hooks/useProductSelection';
+import { PRODUCT_FIELDS } from '@/constants/business';
 
 interface ProductMainInfoProps {
   product: Product;
@@ -73,11 +74,10 @@ export default function ProductMainInfo({ product }: ProductMainInfoProps) {
         )}
 
         <ul className="text-gray-400 text-xs gap-1 flex flex-col">
-          {['gender', 'availability', 'sku'].map((key) =>
-            product[key as keyof typeof product] ? (
+          {PRODUCT_FIELDS.map((key) =>
+            product[key] ? (
               <li key={key}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}:{' '}
-                {product[key as keyof typeof product]}
+                {key.charAt(0).toUpperCase() + key.slice(1)}: {product[key]}
               </li>
             ) : null,
           )}

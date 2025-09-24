@@ -11,7 +11,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Invalide uniquement le cache de ce produit
     revalidateTag(`${CACHE_CONFIG.PRODUCT_CACHE_KEY}-${id}`);
 
     return new Response(

@@ -1,3 +1,7 @@
+/**
+ * Product type definition for e-commerce items
+ * Represents a product with all necessary fields for display and management
+ */
 export type Product = {
   image: string;
   images: string[];
@@ -12,6 +16,13 @@ export type Product = {
   sku?: string;
 };
 
+/**
+ * Type guard function to validate if an unknown object is a valid Product
+ * Performs runtime type checking for all required Product fields
+ *
+ * @param data - The unknown data to validate
+ * @returns True if the data matches the Product type structure
+ */
 export function isValidProduct(data: unknown): data is Product {
   if (typeof data !== 'object' || data === null) return false;
 
