@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHits, UseHitsProps } from 'react-instantsearch';
 import ProductCard from '@/components/product/ProductCard';
+import { Product } from '@/type/product';
 
 export default function CustomHits(props: UseHitsProps) {
   const { items, sendEvent } = useHits(props);
@@ -16,7 +17,7 @@ export default function CustomHits(props: UseHitsProps) {
             e.key === 'Enter' && sendEvent('click', hit, 'Hit Clicked Keyboard')
           }
         >
-          <ProductCard hit={hit} />
+          <ProductCard hit={hit as unknown as Product} />
         </div>
       ))}
     </div>

@@ -5,16 +5,16 @@ import React from 'react';
 interface SizesSelectorProps {
   sizes: string[];
   selectedSize: string | null;
-  setSelectedSize: React.Dispatch<React.SetStateAction<string | null>>;
+  selectSize: (_size: string) => void;
 }
 
 export default function SizesSelector({
   sizes,
   selectedSize,
-  setSelectedSize,
+  selectSize,
 }: SizesSelectorProps) {
   const handleSizeClick = (size: string) => {
-    setSelectedSize((prev) => (prev === size ? null : size));
+    selectSize(size);
   };
 
   return (

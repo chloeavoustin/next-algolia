@@ -1,4 +1,5 @@
 export type Product = {
+  image: string;
   images: string[];
   name: string;
   category: string;
@@ -17,6 +18,7 @@ export function isValidProduct(data: unknown): data is Product {
   const obj = data as Record<string, unknown>;
 
   return (
+    typeof obj.image === 'string' &&
     Array.isArray(obj.images) &&
     typeof obj.name === 'string' &&
     typeof obj.category === 'string' &&

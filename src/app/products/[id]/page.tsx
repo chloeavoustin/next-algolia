@@ -5,13 +5,14 @@ import ProductNotFound from '@/components/noResults/ProductNotFound';
 import { getProduct } from '@/lib/services/productService';
 
 interface ProductDetailProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
 
-  if (!product) return <ProductNotFound id={params.id} />;
+  if (!product) return <ProductNotFound id={id} />;
 
   return <ProductMainInfo product={product} />;
 }
@@ -19,12 +20,13 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 export async function generateMetadata({
   params,
 }: ProductDetailProps): Promise<Metadata> {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
 
   if (!product) {
     return {
       title: 'Product Not Found',
-      description: `The product with ID ${params.id} was not found.`,
+      description: `The product with ID ${id} was not found.`,
     };
   }
 

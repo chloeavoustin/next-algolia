@@ -1,9 +1,6 @@
 module.exports = {
   reactStrictMode: true,
-  swcMinify: true,
-images: {
-    domains: [
-      'cdn.shopify.com', 
-    ],
+  images: {
+    domains: ['cdn.shopify.com'],
   },
-}
+};

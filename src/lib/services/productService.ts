@@ -1,12 +1,25 @@
 import { unstable_cache } from 'next/cache';
 import { searchClient, indexName } from '@/lib/utils/algoliaClient';
 import { Product, isValidProduct } from '@/type/product';
+import { CACHE_CONFIG } from '@/constants/config';
 
 /**
  * Fetch produit depuis Algolia
  */
-async function fetchProductFromAlgolia(id: string): Promise<unknown> {
-  return await searchClient.getObject({ objectID: id, indexName });
+async function fetchProductFromAlgolia(id: string): Promise<unknown | null> {
+  try {
+    return await searchClient.getObject({ objectID: id, indexName });
+  } catch (error) {
+    if (
+      error &&
+      typeof error === 'object' &&
+      'status' in error &&
+      error.status === 404
+    ) {
+      return null;
+    }
+    throw error;
+  }
 }
 
 /**
@@ -15,8 +28,8 @@ async function fetchProductFromAlgolia(id: string): Promise<unknown> {
 export const getProduct = unstable_cache(
   async (id: string): Promise<Product | null> => {
     const data = await fetchProductFromAlgolia(id);
-    return isValidProduct(data) ? data : null;
+    return data && isValidProduct(data) ? data : null;
   },
-  ['product-cache'],
-  { revalidate: 3600 },
+  [CACHE_CONFIG.PRODUCT_CACHE_KEY],
+  { revalidate: CACHE_CONFIG.PRODUCT_REVALIDATE_TIME },
 );

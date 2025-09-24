@@ -1,12 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Product } from '@/type/product';
+import { PRODUCT_ASPECT_RATIO } from '@/constants/business';
 
-export default function ProductCard({ hit }: any) {
+interface ProductCardProps {
+  hit: Product;
+}
+
+export default function ProductCard({ hit }: ProductCardProps) {
   return (
     <div className="col-span-1">
       <Link href={`/products/${hit.objectID}`} className="flex flex-col gap-5">
-        <div className="relative w-full aspect-[0.794]">
+        <div className={`relative w-full aspect-[${PRODUCT_ASPECT_RATIO}]`}>
           <Image
             src={hit.image}
             alt={hit.name}

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { InstantSearch, Configure } from 'react-instantsearch';
 import { searchClient, indexName } from '@/lib/utils/algoliaClient';
+import { ALGOLIA_CONFIG } from '@/constants/config';
 import Sidebar from '@/components/sidebar/Sidebar';
 import CustomHits from '@/components/algolia/CustomHits';
 import NoResultsBoundary from '@/components/noResults/NoResultsBoundary';
@@ -18,7 +19,7 @@ export default function ProductsPage() {
       insights
       routing
     >
-      <Configure hitsPerPage={100} />
+      <Configure hitsPerPage={ALGOLIA_CONFIG.HITS_PER_PAGE} />
 
       <div className="p-6 md:pl-0">
         <div className="mb-4 md:hidden">

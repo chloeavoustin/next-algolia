@@ -1,19 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import ProductImages from '@/components/product/ProductImages';
 import SizesSelector from '@/components/product/SizesSelector';
 import QuantitySelector from '@/components/product/QuantitySelector';
 import { Product } from '@/type/product';
+import { useProductSelection } from '@/hooks/useProductSelection';
 
 interface ProductMainInfoProps {
   product: Product;
 }
 
 export default function ProductMainInfo({ product }: ProductMainInfoProps) {
-  const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const {
+    quantity,
+    selectedSize,
+    canAddToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    selectSize,
+    getCartItem,
+  } = useProductSelection(product);
 
   return (
     <div className="p-6 grid grid-cols-4 gap-6">
@@ -36,22 +44,22 @@ export default function ProductMainInfo({ product }: ProductMainInfoProps) {
         <SizesSelector
           sizes={product.sizes}
           selectedSize={selectedSize}
-          setSelectedSize={setSelectedSize}
+          selectSize={selectSize}
         />
 
-        <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+        <QuantitySelector
+          quantity={quantity}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+        />
 
         <button
           className="w-full text-sm btn"
-          disabled={!selectedSize}
+          disabled={!canAddToCart}
           type="button"
           aria-label="Add to cart"
           onClick={() => {
-            console.log('Add to cart', {
-              id: product.objectID ?? '',
-              size: selectedSize,
-              quantity,
-            });
+            console.log('Add to cart', getCartItem());
           }}
         >
           Add to cart
