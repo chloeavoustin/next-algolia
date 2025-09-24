@@ -7,7 +7,7 @@ A modern e-commerce application featuring Product Listing Pages (PLP) and Produc
 
 ## Features
 
-- 🔍 **Instant Search** - Real-time search with Algolia
+- **Instant Search** - Real-time search with Algolia
 - **Responsive Design** - Mobile-first with Tailwind CSS
 - **Advanced Filtering** - Dynamic faceted search and sorting
 - **Product Details** - Comprehensive product pages with image galleries

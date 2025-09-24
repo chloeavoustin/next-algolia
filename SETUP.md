@@ -8,7 +8,7 @@ This guide will help you get the Next.js Algolia E-commerce application running 
 - npm (comes with Node.js)
 - Algolia account (free tier available)
 
-## 🚀 Step-by-Step Setup
+## Step-by-Step Setup
 
 ### 1. Clone and Install
 
@@ -27,25 +27,27 @@ npm install
 
 2. **Get API Keys**
 
-   - In your Algolia dashboard, go to **API Keys**
-   - Copy your **Application ID**
-   - Copy your **Search-Only API Key**
+   - In your Algolia dashboard, go to **Settings > API Keys**
+   - Copy your **Application ID** (starts with a letter, e.g., "AB1C2D3E4F")
+   - Copy your **Search-Only API Key** (read-only key for frontend searches)
+   - ⚠️ **Important**: Never use your Admin API Key in frontend code
 
 3. **Create Index**
-   - Go to **Indices** in your dashboard
-   - Create a new index (e.g., "products")
-   - Note the index name
+   - Go to **Search > Indices** in your dashboard
+   - Click "Create Index"
+   - Name it in accordance with `NEXT_PUBLIC_ALGOLIA_INDEX_NAME`
+   - The index will be empty initially - we'll populate it in step 5
 
-### 3. Configure Environment
+### 3. Configure Environment Variables
+
+1. **Create Environment File**
 
 ```bash
 # Copy example environment file
 cp .env.example .env.local
-
-# Edit .env.local with your credentials
 ```
 
-Update `.env.local` with your Algolia credentials:
+2. Update `.env.local` with your Algolia credentials:
 
 ```env
 NEXT_PUBLIC_ALGOLIA_APP_ID=YourAppId
@@ -53,9 +55,11 @@ NEXT_PUBLIC_ALGOLIA_SEARCH_KEY=YourSearchKey
 NEXT_PUBLIC_ALGOLIA_INDEX_NAME=products
 ```
 
+⚠️ **Security Note**: These variables are prefixed with `NEXT_PUBLIC_` so they're accessible in the browser. Only use search-only keys, never admin keys.
+
 ### 4. Algolia Index Structure
 
-Your Algolia index should contain products with the following structure:
+Your Algolia index should contain records with the following structure:
 
 ```json
 {
@@ -78,32 +82,87 @@ Your Algolia index should contain products with the following structure:
 
 ### 5. Add Sample Data to Algolia
 
-Upload sample products to your Algolia index using the structure above.
+Your index needs product data to work. Here are several ways to add sample data:
 
-**Quick way to add sample data:**
+**Method 1: Algolia Dashboard (Easiest)**
 
-- Use Algolia dashboard's "Add records" feature
-- Or use their API/CLI tools
+1. Go to your index in Algolia dashboard
+2. Click "Add records"
+3. Upload JSON file or add records manually using the structure above
+
+**Method 2: Sample Data File**
+Create a `sample-products.json` file:
+
+```json
+[
+  {
+    "objectID": "nike-air-max-1",
+    "name": "Nike Air Max 90",
+    "category": "Sneakers",
+    "price": 120,
+    "image": "https://via.placeholder.com/400x400/000000/FFFFFF?text=Nike+Air+Max",
+    "images": [
+      "https://via.placeholder.com/400x400/000000/FFFFFF?text=Nike+Air+Max+1",
+      "https://via.placeholder.com/400x400/000000/FFFFFF?text=Nike+Air+Max+2"
+    ],
+    "sizes": ["38", "39", "40", "41", "42", "43"],
+    "description": "Classic Nike Air Max sneakers with visible air cushioning",
+    "gender": "unisex",
+    "availability": "in_stock",
+    "sku": "NIKE-AM90-001"
+  },
+  {
+    "objectID": "adidas-ultraboost-1",
+    "name": "Adidas Ultraboost 22",
+    "category": "Running",
+    "price": 180,
+    "image": "https://via.placeholder.com/400x400/000000/FFFFFF?text=Adidas+Ultraboost",
+    "images": [
+      "https://via.placeholder.com/400x400/000000/FFFFFF?text=Adidas+UB+1"
+    ],
+    "sizes": ["38", "39", "40", "41", "42"],
+    "description": "Premium running shoes with responsive Boost cushioning",
+    "gender": "unisex",
+    "availability": "in_stock",
+    "sku": "ADIDAS-UB22-001"
+  }
+]
+```
+
+**Method 3: Algolia CLI**
+
+```bash
+# Install Algolia CLI
+npm install -g @algolia/cli
+
+# Upload your JSON file
+algolia objects import your-sample-products.json -a YOUR_APP_ID -k YOUR_ADMIN_KEY -n products
+```
+
+**⚠️ Important**: You need at least 5-10 products for the application to work properly with filters.
 
 ### 6. Configure Index Settings
 
-In your Algolia index settings:
+Configure your Algolia index for optimal search performance:
 
-1. **Searchable Attributes**:
+1. **Searchable Attributes** (in order of importance):
 
-   - `name` (primary searchable)
-   - `category`
-   - `description`
+   ```
+   1. name
+   2. category
+   3. description
+   4. gender
+   5. sku
+   ```
 
-2. **Facets for Filtering**:
+2. **Attributes for Faceting** (enable filtering):
+   ```
+   - category (searchable)
+   - gender (searchable)
+   - sizes (searchable)
+   ```
 
-   - `category`
-   - `gender`
-   - `sizes`
-   - `price` (for range filtering)
-
-3. **Custom Ranking** (optional):
-   - `price` (ascending for lower prices first)
+**Note**: The application expects these specific attribute names and configurations to work properly with filters and search.
 
 ### 7. Run the Application
 
