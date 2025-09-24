@@ -19,7 +19,10 @@ export default function ProductsPage() {
       insights
       routing
     >
-      <Configure hitsPerPage={ALGOLIA_CONFIG.HITS_PER_PAGE} />
+      <Configure
+        hitsPerPage={ALGOLIA_CONFIG.HITS_PER_PAGE}
+        maxValuesPerFacet={ALGOLIA_CONFIG.REFINEMENT_LIMIT}
+      />
 
       <div className='p-6 md:pl-0'>
         <div className='mb-4 md:hidden'>

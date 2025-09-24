@@ -10,7 +10,7 @@ type SidebarProps = {
 
 export default function Sidebar({ setSidebarOpen }: SidebarProps) {
   return (
-    <div className='w-3/4 md:w-full bg-white p-6 overflow-y-auto relative z-20'>
+    <div className='w-3/4 md:w-full bg-white p-6 md:pt-0 overflow-y-auto relative z-20'>
       <div className='flex justify-between items-center mb-4'>
         <h2 className='text-xl font-bold'>Filters & Search</h2>
 

@@ -21,22 +21,9 @@ export async function generateMetadata({
   params,
 }: ProductDetailProps): Promise<Metadata> {
   const { id } = await params;
-  const product = await getProduct(id);
-
-  if (!product) {
-    return {
-      title: 'Product Not Found',
-      description: `The product with ID ${id} was not found.`,
-    };
-  }
 
   return {
-    title: product.name,
-    description: product.description || `Buy ${product.name} in our store.`,
-    openGraph: {
-      title: product.name,
-      description: product.description || `Buy ${product.name} in our store.`,
-      images: product.images.length > 0 ? [{ url: product.images[0] }] : [],
-    },
+    title: 'Product Not Found',
+    description: `The product with ID ${id} was not found.`,
   };
 }
