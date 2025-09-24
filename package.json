@@ -11,8 +11,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "test": "vitest run",
-    "ci": "pnpm type-check && pnpm lint && pnpm format:check && pnpm test && pnpm build"
+    "test": "vitest run"
   },
   "dependencies": {
     "@next/third-parties": "^15.4.6",

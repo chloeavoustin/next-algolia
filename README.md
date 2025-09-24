@@ -101,7 +101,7 @@ npm test src/__tests__/product.test.ts
 - [ ] Add internationalization (i18n)
 - [ ] Implement advanced analytics
 - [ ] Optimize for Core Web Vitals
-- [ ] Add a Design System with Storybook
+- [ ] Add a Design System - Storybook
 - [ ] Securize api endpoints
 - [ ] Add lazy load and infinit scroll on product grid
 - [ ] Protect Algolia key
