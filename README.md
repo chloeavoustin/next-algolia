@@ -67,9 +67,6 @@ npm run type-check    # Run TypeScript type checking
 
 # Testing
 npm test              # Run tests
-
-# Complete CI Pipeline
-npm run ci            # Run all checks (type-check, lint, format, test, build)
 ```
 
 ## Deployment
@@ -95,15 +92,17 @@ npm test
 npm test src/__tests__/product.test.ts
 ```
 
-## To improuve
+## To Improve
 
 - [ ] Improve SEO with structured data
 - [ ] Add internationalization (i18n)
 - [ ] Implement advanced analytics
 - [ ] Optimize for Core Web Vitals
 - [ ] Add a Design System - Storybook
-- [ ] Securize api endpoints
-- [ ] Add lazy load and infinit scroll on product grid
+- [ ] Secure API endpoints
+- [ ] Add lazy load and infinite scroll on product grid
 - [ ] Protect Algolia key
-- [ ] Manage error page
-- [ ] ...
+- [ ] Manage error pages
+- [ ] Optimize CI/CD pipeline
+- [ ] Add end-to-end testing
+- [ ] Implement caching strategies
