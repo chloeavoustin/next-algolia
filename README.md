@@ -1,17 +1,19 @@
 # Next.js Algolia E-commerce
 
 [![CI](https://github.com/chloeavoustin/next-algolia/actions/workflows/ci.yml/badge.svg)](https://github.com/chloeavoustin/next-algolia/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://next-algolia-git-main-chloe-jardins-projects.vercel.app/)
 
-PLP & PDP built with Next.js 15, React InstantSearch, and Algolia.
+A modern e-commerce application featuring Product Listing Pages (PLP) and Product Detail Pages (PDP) built with Next.js 15, React InstantSearch, and Algolia search.
 
 ## Features
 
-- Instant search functionality with Algolia
-- Responsive design with Tailwind CSS
-- Advanced filtering and sorting
-- Product detailed page
-- Server-side rendering
-- Unit tests
+- 🔍 **Instant Search** - Real-time search with Algolia
+- **Responsive Design** - Mobile-first with Tailwind CSS
+- **Advanced Filtering** - Dynamic faceted search and sorting
+- **Product Details** - Comprehensive product pages with image galleries
+- **Server-Side Rendering** - Optimized for performance and SEO
+- **Tested** - Unit tests with Vitest and React Testing Library
+- **CI/CD Ready** - Automated testing and deployment pipeline
 
 ## Tech Stack
 
@@ -20,10 +22,26 @@ PLP & PDP built with Next.js 15, React InstantSearch, and Algolia.
 - **Styling**: Tailwind CSS
 - **Search**: Algolia Search, React InstantSearch
 - **Testing**: Vitest, React Testing Library
-- **Package Manager**: npm
-- **Linting**: ESLint, Prettier
+- **CI/CD**: GitHub Actions
+- **Deployment**: Vercel
+- **Code Quality**: ESLint, Prettier
 
 ## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/chloeavoustin/next-algolia.git
+cd next-algolia
+
+# Install dependencies
+npm install
+
+# Set up environment variables (see SETUP.md)
+cp .env.example .env.local
+
+# Start development server
+npm run dev
+```
 
 For detailed setup instructions, see [SETUP.md](SETUP.md)
 
@@ -75,35 +93,87 @@ npm test              # Run tests
 
 1. Push your code to GitHub
 2. Connect your repository to [Vercel](https://vercel.com)
-3. Add environment variables in Vercel dashboard
-4. Deploy automatically
-
-[**Live Demo**](https://next-algolia-git-main-chloe-jardins-projects.vercel.app/)
+3. Add environment variables in Vercel dashboard:
+   - `NEXT_PUBLIC_ALGOLIA_APP_ID`
+   - `NEXT_PUBLIC_ALGOLIA_SEARCH_KEY`
+   - `NEXT_PUBLIC_ALGOLIA_INDEX_NAME`
+   - `NEXT_PUBLIC_GTM_ID`
+4. Deploy automatically on every push
 
 ## Testing
 
-The project includes comprehensive testing:
+The project includes unit testing with Vitest:
 
 ```bash
 # Run all tests
 npm test
 
+# Run tests in watch mode
+npm run test:watch
+
 # Run specific test file
 npm test src/__tests__/product.test.ts
+
+# Check test coverage
+npm run test:coverage
 ```
 
-## To Improve
+## Roadmap & Improvements
 
-- [ ] Improve SEO with structured data
-- [ ] Add internationalization (i18n)
-- [ ] Implement advanced analytics
-- [ ] Optimize for Core Web Vitals
-- [ ] Add a Design System - Storybook
-- [ ] Secure API endpoints
-- [ ] Add lazy load and infinite scroll on product grid
-- [ ] Protect Algolia key
-- [ ] Manage error pages
-- [ ] Optimize CI/CD pipeline
-- [ ] Add end-to-end testing
-- [ ] Implement caching strategies
-- [ ] ...
+### High Priority (Production Critical)
+
+- [ ] **Protect Algolia API key** - Move to server-side or implement secure proxy
+- [ ] **Enhanced Error Handling** - Add global error boundary with retry mechanisms
+- [ ] **API Rate Limiting** - Add rate limiting for revalidation endpoints
+- [ ] **Performance Monitoring** - Implement Core Web Vitals tracking and alerts
+- [ ] **Comprehensive Error Pages** - 404, 500, offline pages with proper UX
+
+### Medium Priority (User Experience)
+
+- [ ] **End-to-End Testing** - Add tools for critical user flows
+- [ ] **Advanced Caching Strategy** - Implement database for product data instead of Algolia-only
+- [ ] **Infinite Scroll/Pagination** - Replace current grid with optimized loading
+- [ ] **Loading States** - Add skeleton loaders and better loading indicators
+- [ ] **Search Analytics** - Track search queries and user behavior patterns
+- [ ] **SEO Optimization** - Add structured data (JSON-LD) and meta improvements
+- [ ] **Accessibility Audit** - Complete WCAG 2.1 AA compliance
+
+### Low Priority (Nice to Have)
+
+- [ ] **Internationalization (i18n)** - Multi-language support with next-intl
+- [ ] **Design System** - Implement Storybook with component documentation
+- [ ] **Advanced Analytics** - Custom events tracking with GTM
+- [ ] **Advanced Search** - Autocomplete, search suggestions, ...
+- [ ] **User Preferences** - Persistent filters with breadcrumb navigation
+
+### Technical Debt & Architecture
+
+- [ ] **State Management** - Implement Zustand/Redux for complex state if needed
+- [ ] **Monitoring & Alerting** - Implement Sentry, or similar
+- [ ] **Code Coverage** - Define testing standards and integrate coverage reports in CI/CD
+
+### Performance & Scalability
+
+- [ ] **Image Optimization** - use CDN to optimize image on all devices
+- [ ] **Bundle Analysis** - Code splitting and tree shaking optimization
+- [ ] **Server-Side Optimization** - Edge functions, ISR improvements
+- [ ] **Performance Metrics** - Core Web Vitals monitoring and optimization
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+<div align="center">
+  <p>Built with ❤️ using Next.js and Algolia</p>
+  <p>
+    <a href="https://nextjs.org">Next.js</a> •
+    <a href="https://www.algolia.com">Algolia</a> •
+    <a href="https://tailwindcss.com">Tailwind CSS</a>
+  </p>
+</div>
