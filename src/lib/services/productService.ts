@@ -25,11 +25,18 @@ async function fetchProductFromAlgolia(id: string): Promise<unknown | null> {
 /**
  * Cache produit avec revalidation 1h
  */
-export const getProduct = unstable_cache(
-  async (id: string): Promise<Product | null> => {
-    const data = await fetchProductFromAlgolia(id);
-    return data && isValidProduct(data) ? data : null;
-  },
-  [CACHE_CONFIG.PRODUCT_CACHE_KEY],
-  { revalidate: CACHE_CONFIG.PRODUCT_REVALIDATE_TIME },
-);
+export const getProduct = (id: string) =>
+  unstable_cache(
+    async (): Promise<Product | null> => {
+      const data = await fetchProductFromAlgolia(id);
+      return data && isValidProduct(data) ? data : null;
+    },
+    [CACHE_CONFIG.PRODUCT_CACHE_KEY, id],
+    {
+      revalidate: CACHE_CONFIG.PRODUCT_REVALIDATE_TIME,
+      tags: [
+        CACHE_CONFIG.PRODUCT_CACHE_KEY,
+        `${CACHE_CONFIG.PRODUCT_CACHE_KEY}:${id}`,
+      ],
+    },
+  )();
